@@ -24,7 +24,7 @@ class ProgramDonasiController extends Controller
     public function index()
     {
         //get all posts
-        $programdonasis = ProgramDonasi::latest()->paginate(5);
+        $programdonasis = ProgramDonasi::latest()->paginate(30);
 
         //return collection of posts as a resource
         return new UkomResource(true, 'List Data Program Donasi', $programdonasis);
@@ -81,7 +81,7 @@ class ProgramDonasiController extends Controller
         ]);
 
         //return response
-        return new UkomResource(true, 'Data Donatur Berhasil Ditambahkan!', $donatur);
+        return new UkomResource(true, 'Data Program Donasi Berhasil Ditambahkan!', $donatur);
     }
 
     /**
@@ -93,6 +93,9 @@ class ProgramDonasiController extends Controller
     public function show($id)
     {
         //find donatur by ID
+        // $progamdonasi = ProgramDonasi::join('donaturs' , 'program_donasis.id' , '=' , 'donaturs.idprogram')
+        // ->select('donaturs.doa' , 'program_donasis.*')
+        // ->find($id);
         $progamdonasi = ProgramDonasi::find($id);
 
         //return single post as a resource
